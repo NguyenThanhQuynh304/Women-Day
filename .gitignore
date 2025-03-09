@@ -5,8 +5,8 @@
 /.pnp
 .pnp.js
 
-# Ignore specific file
-"h -u origin main"
+# Ignore specific files
+h -u origin main
 
 # testing
 /coverage
