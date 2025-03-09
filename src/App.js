@@ -8,14 +8,15 @@ import './App.css';
 
 const AppContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
   position: relative;
+  padding: 20px;
 `;
 
 // Adding decorative elements
@@ -52,54 +53,61 @@ const Star = styled.div`
   }
 `;
 
-const Title = styled(motion.h1)`
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  color: #ff69b4;
-  text-shadow: 0 0 10px rgba(255, 105, 180, 0.7), 0 0 20px rgba(255, 105, 180, 0.5);
-  margin-bottom: 20px;
-  margin-top: 20px;
-  z-index: 10;
-  font-family: 'Pacifico', cursive;
-  letter-spacing: 1px;
-  text-align: center;
-  padding: 0 15px;
+const Title = styled(motion.div)`
+  position: relative;
   width: 100%;
-  max-width: 90vw;
-  white-space: pre-line;
+  text-align: center;
+  margin: 10px 0 20px;
+  z-index: 100;
 
-  @media (max-width: 768px) {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 15px;
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ff69b4;
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    padding: 0;
+    white-space: pre-line;
+    line-height: 1.4;
+    text-shadow: 
+      0 0 10px rgba(255, 105, 180, 0.7),
+      0 0 20px rgba(255, 105, 180, 0.5),
+      0 0 30px rgba(255, 105, 180, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 
+        0 0 10px rgba(255, 105, 180, 0.7),
+        0 0 20px rgba(255, 105, 180, 0.5),
+        0 0 30px rgba(255, 105, 180, 0.3);
+    }
+    to {
+      text-shadow: 
+        0 0 20px rgba(255, 105, 180, 0.9),
+        0 0 30px rgba(255, 105, 180, 0.7),
+        0 0 40px rgba(255, 105, 180, 0.5);
+    }
   }
   
-  @media (max-width: 480px) {
-    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
-    letter-spacing: 0.5px;
+  @media (max-width: 768px) {
+    margin: 5px 0 15px;
+    
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      padding: 0 15px;
+    }
   }
 `;
 
-const FlowerContainer = styled(motion.div)`
+const ContentContainer = styled.div`
   width: 100%;
-  height: 45vh;
+  max-width: 800px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  z-index: 5;
-  margin-bottom: 0;
-  position: relative;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 10px;
-    background: radial-gradient(ellipse at center, rgba(255,192,203,0.3) 0%, rgba(0,0,0,0) 70%);
-    border-radius: 50%;
-    filter: blur(5px);
-  }
+  gap: 10px;
+  margin-top: 10px;
 `;
 
 function App() {
@@ -150,25 +158,29 @@ function App() {
         />
       ))}
       
-      <FloatingHearts count={20} />
-      
       <Title
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        {'Chúc mừng ngày 8/3,\nChúc các người đẹp Phan Thiết của Tui!'}
+        <motion.h1
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            duration: 1.5,
+            ease: "easeOut"
+          }}
+        >
+          {"Chúc mừng ngày 8/3,\nChúc các người đẹp Phan Thiết của Tui!"}
+        </motion.h1>
       </Title>
       
-      <FlowerContainer
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
+      <ContentContainer>
         <FlowerBouquet />
-      </FlowerContainer>
+        <MessageCard />
+      </ContentContainer>
       
-      <MessageCard marginBottom={true} />
+      <FloatingHearts count={20} />
     </AppContainer>
   );
 }

@@ -8,18 +8,25 @@ const CardContainer = styled(motion.div)`
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   border-radius: 24px;
-  padding: 25px;
-  max-width: 550px;
-  width: 90%;
+  padding: 15px;
+  max-width: 450px;
+  width: 85%;
   box-shadow: 
     0 10px 30px rgba(255, 105, 180, 0.3),
     0 0 20px rgba(255, 182, 193, 0.2),
     inset 0 0 10px rgba(255, 255, 255, 0.5);
-  margin-top: -20px;
-  margin-bottom: ${props => props.marginBottom ? '30px' : '0'};
+  margin: 15px auto;
   z-index: 10;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    padding: 12px;
+    width: 90%;
+    margin: 8px auto;
+  }
   
   &:before {
     content: '';
@@ -54,46 +61,56 @@ const CardContainer = styled(motion.div)`
 
 const MessageWrapper = styled(motion.div)`
   min-height: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 5px;
 `;
 
 const Message = styled(motion.p)`
   font-size: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #333;
-  margin-bottom: 15px;
-  font-family: 'Comic Sans MS', 'Bubblegum Sans', 'Indie Flower', cursive;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
   text-align: center;
   position: relative;
+  padding: 8px;
+  width: 100%;
+  font-weight: 500;
+  letter-spacing: 0.3px;
   
   &:first-letter {
-    font-size: 1.6rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: #ff69b4;
+    font-family: 'Dancing Script', cursive;
   }
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    letter-spacing: 0.4px;
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-  margin-top: 10px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
   
-  &:before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255,105,180,0.5), transparent);
+  @media (max-width: 768px) {
+    padding: 3px;
+    margin-top: 3px;
   }
 `;
 
@@ -101,18 +118,32 @@ const Button = styled(motion.button)`
   background: linear-gradient(45deg, #ff69b4, #ffb6c1);
   border: none;
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 10px 24px;
   color: white;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   box-shadow: 
     0 4px 15px rgba(255, 105, 180, 0.4),
-    0 0 0 3px rgba(255, 255, 255, 0.2);
+    0 0 0 2px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin: 4px 0;
+  min-width: 130px;
+  max-width: 180px;
+  width: auto;
+  z-index: 2;
+  letter-spacing: 0.5px;
+  
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    padding: 8px 20px;
+    min-width: 120px;
+    margin: 2px 0;
+    letter-spacing: 0.3px;
+  }
   
   &:before {
     content: '';
@@ -124,7 +155,7 @@ const Button = styled(motion.button)`
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.3),
       transparent
     );
     transition: 0.5s;
@@ -142,12 +173,16 @@ const HeartIcon = styled(motion.span)`
 `;
 
 const ProgressBar = styled.div`
-  width: 100%;
+  width: 90%;
   height: 4px;
   background: rgba(255, 105, 180, 0.2);
   border-radius: 2px;
-  margin-top: 20px;
+  margin: 15px auto 5px;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    margin: 10px auto 3px;
+  }
 `;
 
 const Progress = styled.div`
@@ -219,7 +254,7 @@ const HeartRow = styled(motion.div)`
 const FinalMessage = styled(motion.div)`
   font-size: 4rem;
   color: white;
-  font-family: 'Pacifico', cursive;
+  font-family: 'Dancing Script', cursive;
   text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4;
   z-index: 1001;
   position: absolute;
@@ -229,10 +264,12 @@ const FinalMessage = styled(motion.div)`
   border-radius: 20px;
   box-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
   backdrop-filter: blur(10px);
+  letter-spacing: 1px;
   
   @media (max-width: 768px) {
     font-size: 3rem;
     padding: 20px 30px;
+    letter-spacing: 0.5px;
   }
 `;
 
@@ -244,9 +281,7 @@ const MessageDecoration = styled(motion.div)`
   pointer-events: none;
 `;
 
-
-
-const MessageCard = ({ marginBottom }) => {
+const MessageCard = () => {
     const [currentMessage, setCurrentMessage] = useState(0);
     const [floatingHearts, setFloatingHearts] = useState([]);
     const [showFinalEffect, setShowFinalEffect] = useState(false);
@@ -313,10 +348,9 @@ const MessageCard = ({ marginBottom }) => {
     return (
         <>
             <CardContainer
-                marginBottom={marginBottom}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+                transition={{ duration: 0.8 }}
             >
                 <AnimatePresence mode="wait">
                     <MessageWrapper
@@ -326,18 +360,7 @@ const MessageCard = ({ marginBottom }) => {
                         exit={{ opacity: 0, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <Message
-                            initial={{ opacity: 0 }}
-                            animate={{
-                                opacity: 1,
-                                transition: {
-                                    delay: 0.2,
-                                    staggerChildren: 0.1
-                                }
-                            }}
-                        >
-                            {messages[currentMessage]}
-                        </Message>
+                        <Message>{messages[currentMessage]}</Message>
                     </MessageWrapper>
                 </AnimatePresence>
 
@@ -393,11 +416,6 @@ const MessageCard = ({ marginBottom }) => {
                     transition={{ duration: 0.5 }}
                 >
                     {heartRows}
-
-                    <MessageDecoration>
-                       
-                    </MessageDecoration>
-
                     <FinalMessage
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
